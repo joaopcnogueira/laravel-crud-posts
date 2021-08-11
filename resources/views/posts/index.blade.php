@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div id="index-header-container" class="row">
+    <div id="header-container" class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Laravel 8 CRUD Example from scratch</h2>
@@ -19,24 +19,32 @@
         </div>
     @endif
 
-    <table id="index-table" class="table table-bordered">
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-        </tr>
-        @foreach ($posts as $post)
-            <td>{{ $post->title }}</td>  
-            <td>{{ $post->description }}</td> 
-            <td>
-                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">Show</a>
-                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
-                <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>         
-        @endforeach
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($posts as $post)
+                <tr>
+                    <td>{{ $post->title }}</td>  
+                    <td>{{ $post->description }}</td> 
+                    <td>
+                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">Show</a>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>         
+                </tr>
+            @endforeach
+        </tbody>
+
     </table>
     
 @endsection
