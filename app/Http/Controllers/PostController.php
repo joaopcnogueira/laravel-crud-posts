@@ -50,22 +50,24 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
+        $post = Post::where('id', $id)->first();
         return view('posts.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
+        $post = Post::where('id', $id)->first();
         return view('posts.edit', compact('post'));
     }
 
@@ -73,15 +75,17 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
             'description' => 'required'
         ]);
+
+        $post = Post::where('id', $id)->first();
 
         $post->update($request->all());
 
@@ -93,11 +97,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
+        $post = Post::where('id', $id)->first();
         $post->delete();
 
         return redirect()

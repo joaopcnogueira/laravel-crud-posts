@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laravel 8 CRUD Example Tutorial</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
     <div class="container">
